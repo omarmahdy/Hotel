@@ -9,7 +9,7 @@ namespace Hotel.Models
         [Required]
         public int R_ID { get; set; }
         [Required]
-        [ForeignKey("G_ID")]
+        [ForeignKey("guest")]
         public int G_ID { get; set; }
         [Required]
         public DateTime From { get; set; }
@@ -17,5 +17,7 @@ namespace Hotel.Models
         public DateTime To { get; set; }
         [Required]
         public int Num_of_Rooms { get; set; }
+
+        public Guest guest { get; set; }
     }
 }

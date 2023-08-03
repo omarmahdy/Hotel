@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hotel.Models
 {
-
+    [PrimaryKey(nameof(G_ID))]
     public class Guest
     {
-        [Key]
+        
         [Required] 
         public int G_ID { get; set; }
         [Required]

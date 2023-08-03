@@ -11,7 +11,9 @@ namespace Hotel.Models
         [Required]
         public string Type { get; set; }
         [Required]
-        [ForeignKey("G_ID")]
-        public string G_ID{ get; set; }
+        [ForeignKey("guest")]
+        public int G_ID{ get; set; }
+
+        public Guest guest { get; set; }
     }
 }
