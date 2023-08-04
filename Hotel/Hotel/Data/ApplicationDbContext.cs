@@ -15,6 +15,8 @@ namespace Hotel.Data
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Reservation> Reservatons { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+
 
     }
 }

@@ -16,7 +16,7 @@ namespace Hotel.Models
         [Required]
         public DateTime To { get; set; }
         [Required]
-        public int Num_of_Rooms { get; set; }
+        public int Num_of_night { get; set; }
 
         public Guest guest { get; set; }
     }
