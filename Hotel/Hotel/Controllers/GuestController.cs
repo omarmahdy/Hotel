@@ -1,5 +1,4 @@
 ﻿using Hotel.Data;
-using Hotel.Migrations;
 using Hotel.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,53 +8,39 @@ namespace Hotel.Controllers
     {
 
         private readonly ApplicationDbContext _db;
-
         public GuestController(ApplicationDbContext db)
         {
-            _db = db;
+            _db = db;   
         }
-        [HttpGet]
         public IActionResult Index()
         {
-
-
             return View();
         }
-
 
         [HttpGet]
-        public IActionResult Reservation()
+        public IActionResult Reservation1()
         {
-
-
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Reservation(Guest guest)
+        public IActionResult Reservation1(Guest guest)
         {
-            
-
-            if(ModelState.IsValid)
+            var email=_db.Guests.FirstOrDefault(u=>u.Email == guest.Email);
+            if (email != null)
             {
-                var email = _db.Guests.FirstOrDefault(u => u.Email == guest.Email);
-                if (email != null)
-                {
-                    ModelState.AddModelError("AllreadyThere", "Email address allraedy exists");
-                }
-                if(email.Phone_number == guest.Phone_number)
-                {
-                    ModelState.AddModelError("AllreadyThere", "Phone number allraedy exists");
-                }
-                _db.Guests.Add(guest);
-                _db.SaveChanges();
+                ModelState.AddModelError("Exists", "Email address Allready exists");
             }
-
+           
+            if (ModelState.IsValid) 
+            {
+                _db.Guests.Add(guest);
+                _db.SaveChanges(); 
+                return RedirectToAction("Index");   
+            }
 
             return View();
         }
-
 
     }
 }

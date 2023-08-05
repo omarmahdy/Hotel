@@ -1,0 +1,35 @@
+﻿@model Guest
+
+<form method="post" >
+    <div class="border p-3 mt-4">
+        
+        <div class="mb-3">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Fname">First name</label>
+            <input asp-for="Fname" class="form-control" placeholder="First name" />
+            <span asp-validation-for="Fname" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Lname">Last name</label>
+            <input asp-for="Lname" class="form-control" placeholder="Last name" />
+            <span asp-validation-for="Lname" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone_number">Phone number</label>
+            <input asp-for="Phone_number" class="form-control" placeholder="Phone number" />
+            <span asp-validation-for="Phone_number" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="widt:150px">Next</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="widt:150px">Cancel</a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }
