@@ -1,6 +1,6 @@
 ﻿@model Guest
 
-<form method="post" >
+@*<form method="post" asp-controller="Guest" asp-action="Reservation1">
     <div class="border p-3 mt-4">
         
         <div class="mb-3">
@@ -23,13 +23,76 @@
             <input asp-for="Phone_number" class="form-control" placeholder="Phone number" />
             <span asp-validation-for="Phone_number" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary" style="widt:150px">Next</button>
+        <div class="mb-3">
+
+
+           
+
+            <label asp-for="Room_Type">Select Room Type:</label>
+            <select asp-for="Room_Type" class="form-control" asp-items="ViewBag.room_">
+            </select>
+            <span asp-validation-for="Room_Type" class="text-danger"></span>
+            
+        </div>
+            
+        
+        <input type="submit" class="btn btn-primary" style="widt:150px" />
         <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="widt:150px">Cancel</a>
     </div>
-</form>
+</form>*@
+
+@{
+    var room_T = new List<string>
+            {
+               "Single",
+               "Double",
+               "Suite"
+            };
+    ViewData["Room"] = room_T;
+}
+
+
+
+
+@using (Html.BeginForm("Reservation1", "Guest", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fname)
+        @Html.TextBoxFor(model => model.Fname, new { @class = "form-control" })
+         <span asp-validation-for="Fname" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lname)
+        @Html.TextBoxFor(model => model.Lname, new { @class = "form-control" })
+        <span asp-validation-for="Lname" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone_number)
+        @Html.TextBoxFor(model => model.Phone_number, new { @class = "form-control" })
+        <span asp-validation-for="Phone_number" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Room_Type)
+
+        <select asp-for="Room_Type" class="form-control" asp-items="@(new SelectList((List<string>)ViewData["Room"]))"></select>
+        <span asp-validation-for="Room_Type" class="text-danger"></span>
+    </div>
+    <br /><br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
 
 @section Scripts{
     @{
         <partial name="_ValidationScriptsPartial" />
     }
-    }
+ }
+

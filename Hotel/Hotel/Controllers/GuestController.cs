@@ -1,6 +1,8 @@
 ﻿using Hotel.Data;
 using Hotel.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace Hotel.Controllers
 {
@@ -20,27 +22,33 @@ namespace Hotel.Controllers
         [HttpGet]
         public IActionResult Reservation1()
         {
+           
+
             return View();
+            
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Reservation1(Guest guest)
         {
-            var email=_db.Guests.FirstOrDefault(u=>u.Email == guest.Email);
+            var email = _db.Guests.FirstOrDefault(u => u.Email == guest.Email);
             if (email != null)
             {
                 ModelState.AddModelError("Exists", "Email address Allready exists");
             }
-           
-            if (ModelState.IsValid) 
+
+            if (ModelState.IsValid)
             {
                 _db.Guests.Add(guest);
-                _db.SaveChanges(); 
-                return RedirectToAction("Index");   
-            }
+                _db.SaveChanges();
+                return RedirectToAction("Index","Home");   
 
+            }
             return View();
         }
+
+
+
 
     }
 }
